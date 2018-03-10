@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+
+<!-- les css -->
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />
+<title>Login</title>
+</head>
+<body class="content">
+	<div class="container">
+		<div class="row">
+
+			<!-- zone vide sur la gauche -->
+			<div class="col-lg-4 col-md-3 col-sm-1"></div>
+
+
+			<!-- le contenu -->
+			<div class="col-lg-4 col-md-6 col-sm-10">
+				<form class="form-login" name='form'
+					th:action="@{/j_spring_security_check}" method='POST'>
+					<h3>Connexion</h3>
+					<br />
+					<!-- Saisir l'adresse electronique -->
+					<input type="email" class="form-control" id="email" name="username"
+						placeholder="Adresse electronique" required="true" />
+
+					<!-- Saisir le mot de passe -->
+					<input type="password" class="form-control" name="password"
+						id="password" placeholder="Mot de passe" required="true" />
+					<div>
+						<br /> <label> <input type="checkbox" value="souvenir" />
+							Se souvenir de moi
+						</label>
+					</div>
+
+					<!-- bouton de connexion -->
+					<br />
+					<button type="submit" class="btn btn-lg btn-primary btn-block"
+						width="">Se connecter</button>
+					<br /> <br />
+					<p class="text-muted">© 2017-2018</p>
+				</form>
+			</div>
+
+			<!-- zone vide sur la droite -->
+			<div class="col-lg-4 col-md-3 col-sm-1"></div>
+		</div>
+	</div>
+
+	<!-- les scripts -->
+	<script type="text/javascript" th:src="@{/js/tether.js}"></script>
+	<script type="text/javascript" th:src="@{/js/tether.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

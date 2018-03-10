@@ -1,0 +1,62 @@
+html {
+	text-align: center;
+}
+
+html, body {
+	width: 100%;
+	margin: 0px;
+	height: 100%;
+}
+
+body {
+	font-size: 14px;
+	font-family: Segoe UI;
+	font-style: normal;
+}
+
+form {
+	display: block;
+}
+
+.form-login {
+	width: 100%;
+	max-width: 350px;
+	padding: 15px;
+	margin: 0px;
+}
+
+.content {
+	display: flex;
+}
+
+.container {
+	margin: auto;
+	text-align: center;
+}
+
+.btn-block {
+	display: block;
+	width: 100%;
+}
+
+.btn {
+	font-family: Segoe UI;
+	font-size: 14px;
+	vertical-align: middle;
+	text-align: center;
+	height : 50px;
+}
+
+.form-control {
+	font-family: Segoe UI;
+	font-size: 15px;
+	height: 50px;
+	box-sizing: border-box;
+	dispay: block;
+	position: relative;
+	vertical-align: middle;
+}
+
+label {
+	display: inline-block;
+}
