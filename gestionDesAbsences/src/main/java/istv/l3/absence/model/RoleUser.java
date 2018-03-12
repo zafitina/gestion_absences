@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -24,6 +25,11 @@ public class RoleUser implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Getter
 	private int id;
+
+	@NotNull
+	@Getter
+	@Setter
+	private String typeUser;
 
 	@Getter
 	@Setter
@@ -63,8 +69,11 @@ public class RoleUser implements Serializable {
 		this.roles = roles;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public String getTypeUser() {
+		return typeUser;
 	}
 
+	public void setTypeUser(String typeUser) {
+		this.typeUser = typeUser;
+	}
 }

@@ -16,6 +16,27 @@ public class RoleService {
 	@Autowired
 	private RoleRepository roleRepository;
 
+	// sauvegarder un role
+	public void save(Role role) {
+		roleRepository.save(role);
+	}
+
+	// supprimer un role
+	public void delete(int id) {
+		roleRepository.delete(id);
+	}
+
+	// liste des roles
+	public Set<Role> findAll() {
+		return roleRepository.findAll();
+	}
+
+	// retourner un role
+	public Role findOne(int id) {
+		return roleRepository.findOne(id);
+	}
+
+	// les roles de l'user
 	public Set<Role> findRolesByUser(User user) {
 		Set<Role> allRoles = roleRepository.findAll();
 		Set<Role> userRoles = new HashSet<>();

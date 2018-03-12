@@ -4,15 +4,10 @@ import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.Email;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -36,10 +31,10 @@ public class Etudiant extends User implements Serializable {
 	@Setter
 	private boolean reserve;
 
-	@ManyToMany
+	@OneToMany(mappedBy = "etudiant")
 	@Getter
 	@Setter
-	private Set<Seance> seances;
+	private Set<Presence> presences;
 
 	public Etudiant() {
 		super();
@@ -61,12 +56,11 @@ public class Etudiant extends User implements Serializable {
 		this.reserve = reserve;
 	}
 
-	public Set<Seance> getSeances() {
-		return seances;
+	public Set<Presence> getPresences() {
+		return presences;
 	}
 
-	public void setSeances(Set<Seance> seances) {
-		this.seances = seances;
+	public void setPresences(Set<Presence> presences) {
+		this.presences = presences;
 	}
-
 }

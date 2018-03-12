@@ -40,10 +40,10 @@ INSERT INTO public.groupe(id, td, tp, formation_id)VALUES (5, 4, 5, 1);
 
 
 --importation des roles
-INSERT INTO public.role_user(id)VALUES 
-(1),--admin
-(2),--responsable
-(3);--etudiant
+INSERT INTO public.role_user(id, type_user)VALUES 
+(1, 'admin'),--admin
+(2, 'responsable'),--responsable
+(3, 'etudiant');--etudiant
 
 --importation liste des étudiants
 INSERT INTO public.etudiant(id, mail, nom, password, prenom, role_user_id, reserve, groupe_id)VALUES 

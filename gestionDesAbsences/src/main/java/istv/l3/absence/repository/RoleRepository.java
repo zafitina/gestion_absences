@@ -16,6 +16,4 @@ public interface RoleRepository extends CrudRepository<Role, Long> {
 
 	public void delete(long id);
 
-	public Set<Role> findByRoleUser(int idUser);
-
 }

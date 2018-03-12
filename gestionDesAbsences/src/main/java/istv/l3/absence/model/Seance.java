@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
@@ -72,15 +73,10 @@ public class Seance implements Serializable {
 	@Setter
 	private Admin admin;
 
-	@ManyToMany(mappedBy = "seances")
+	@OneToMany(mappedBy = "seance")
 	@Getter
 	@Setter
-	private Set<Etudiant> etudiants;
-
-	@ManyToMany(mappedBy = "seances")
-	@Getter
-	@Setter
-	private Set<Etudiant> absents;
+	private Set<Presence> presences;
 
 	public Seance() {
 
@@ -150,24 +146,11 @@ public class Seance implements Serializable {
 		this.admin = admin;
 	}
 
-	public Set<Etudiant> getEtudiants() {
-		return etudiants;
+	public Set<Presence> getPresences() {
+		return presences;
 	}
 
-	public void setEtudiants(Set<Etudiant> etudiants) {
-		this.etudiants = etudiants;
+	public void setPresences(Set<Presence> presences) {
+		this.presences = presences;
 	}
-
-	public Set<Etudiant> getAbsents() {
-		return absents;
-	}
-
-	public void setAbsents(Set<Etudiant> absents) {
-		this.absents = absents;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 }
