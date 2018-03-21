@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -36,6 +38,7 @@ public class Batiment implements Serializable {
 	@OneToMany(mappedBy = "batiment")
 	@Getter
 	@Setter
+	@JsonIgnore
 	private Set<Salle> salles;
 
 	public Batiment() {

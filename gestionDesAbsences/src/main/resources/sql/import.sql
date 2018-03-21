@@ -1,3 +1,20 @@
+--suppression de toutes les données avant insertion
+TRUNCATE TABLE admin CASCADE;
+TRUNCATE TABLE batiment CASCADE;
+TRUNCATE TABLE demande CASCADE;
+TRUNCATE TABLE etudiant CASCADE;
+TRUNCATE TABLE formation CASCADE;
+TRUNCATE TABLE groupe CASCADE;
+TRUNCATE TABLE module CASCADE;
+TRUNCATE TABLE presence CASCADE;
+TRUNCATE TABLE responsable CASCADE;
+TRUNCATE TABLE responsable_modules CASCADE;
+TRUNCATE TABLE role CASCADE;
+TRUNCATE TABLE role_user CASCADE;
+TRUNCATE TABLE salle CASCADE;
+TRUNCATE TABLE seance CASCADE;
+TRUNCATE TABLE unite_etude CASCADE;
+
 --importation liste des unités d'études
 INSERT INTO unite_etude(id, codeue, nom)VALUES (1, 'S5INPROG', 'Méthodes de programmation');
 INSERT INTO unite_etude(id, codeue, nom)VALUES (2, 'S5INCOMP', 'Linéaire et compléxité');
@@ -52,8 +69,41 @@ INSERT INTO public.etudiant(id, mail, nom, password, prenom, role_user_id, reser
 
 
 
-
 --importation liste des responsable
+
+
+--importation liste des batiments
+INSERT INTO public.batiment(id, nom)VALUES (1, 'AB1');
+INSERT INTO public.batiment(id, nom)VALUES (2, 'AB2');
+INSERT INTO public.batiment(id, nom)VALUES (3, 'AB3');
+INSERT INTO public.batiment(id, nom)VALUES (4, 'MATISSE');
+INSERT INTO public.batiment(id, nom)VALUES (5, 'AB0');
+
+--importation liste des salles
+--les salles AB1
+INSERT INTO public.salle(id, numero, reserve, batiment_id)VALUES (1, 004, false, 1);
+INSERT INTO public.salle(id, numero, reserve, batiment_id)VALUES (2, 102, false, 1);
+INSERT INTO public.salle(id, numero, reserve, batiment_id)VALUES (3, 005, false, 1);
+INSERT INTO public.salle(id, numero, reserve, batiment_id)VALUES (4, 202, false, 1);
+INSERT INTO public.salle(id, numero, reserve, batiment_id)VALUES (5, 204, false, 1);
+--salles AB2
+INSERT INTO public.salle(id, numero, reserve, batiment_id)VALUES (6, 100, false, 2);
+INSERT INTO public.salle(id, numero, reserve, batiment_id)VALUES (7, 175, false, 2);
+INSERT INTO public.salle(id, numero, reserve, batiment_id)VALUES (8, 114, false, 2);
+--salles AB3
+INSERT INTO public.salle(id, numero, reserve, batiment_id)VALUES (9, 104, false, 3);
+INSERT INTO public.salle(id, numero, reserve, batiment_id)VALUES (10, 106, false, 3);
+INSERT INTO public.salle(id, numero, reserve, batiment_id)VALUES (11, 111, false, 3);
+--salles MATISSE
+INSERT INTO public.salle(id, numero, reserve, batiment_id)VALUES (12, 100, false, 4);
+INSERT INTO public.salle(id, numero, reserve, batiment_id)VALUES (13, 200, false, 4);
+INSERT INTO public.salle(id, numero, reserve, batiment_id)VALUES (14, 300, false, 4);
+--salles AB0
+INSERT INTO public.salle(id, numero, reserve, batiment_id)VALUES (15, 105, false, 5);
+INSERT INTO public.salle(id, numero, reserve, batiment_id)VALUES (16, 102, false, 5);
+INSERT INTO public.salle(id, numero, reserve, batiment_id)VALUES (17, 110, false, 5);
+
+
 
 
 

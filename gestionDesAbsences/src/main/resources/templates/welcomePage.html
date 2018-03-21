@@ -7,11 +7,13 @@
 <body>
 
 	<!-- Include _menu.html -->
-	<th:block th:include="/menu"></th:block>
+	<th:block th:include="/navbar"></th:block>
 
 	<h2>
 		Message : <span th:utext="${message}"></span>
 	</h2>
+	<p th:utext="${username}"></p>
 
 </body>
 </html>
+

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import istv.l3.absence.model.Batiment;
 import istv.l3.absence.service.BatimentService;
@@ -23,5 +24,12 @@ public class BatimentController {
 	@ResponseBody
 	public Set<Batiment> findAll() {
 		return batimentService.findAll();
+	}
+
+	@RequestMapping(value = "/batiment", method = RequestMethod.GET)
+	public ModelAndView homeBatiment() {
+		ModelAndView model = new ModelAndView("batiment");
+		model.addObject("title", "Bâtiment");
+		return model;
 	}
 }
