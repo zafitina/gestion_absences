@@ -43,6 +43,10 @@ public class Groupe implements Serializable {
 	@Setter
 	private int tp;
 
+	@Getter
+	@Setter
+	private String nom;
+
 	@NotNull
 	@ManyToOne
 	@Getter

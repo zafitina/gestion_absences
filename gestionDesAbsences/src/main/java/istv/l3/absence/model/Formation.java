@@ -51,10 +51,10 @@ public class Formation implements Serializable {
 	private Set<Groupe> groupes;
 
 	@NotNull
-	@OneToOne(mappedBy = "formation")
+	@OneToMany(mappedBy = "formation")
 	@Getter
 	@Setter
-	private Responsable responsable;
+	private Set<Responsable> responsables;
 
 	public Formation() {
 
@@ -100,13 +100,11 @@ public class Formation implements Serializable {
 		this.groupes = groupes;
 	}
 
-	public Responsable getResponsable() {
-		return responsable;
+	public Set<Responsable> getResponsables() {
+		return responsables;
 	}
 
-	public void setResponsable(Responsable responsable) {
-		this.responsable = responsable;
+	public void setResponsables(Set<Responsable> responsables) {
+		this.responsables = responsables;
 	}
-	
-	
 }

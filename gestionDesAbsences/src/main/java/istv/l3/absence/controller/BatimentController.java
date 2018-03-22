@@ -3,6 +3,7 @@ package istv.l3.absence.controller;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,6 +27,7 @@ public class BatimentController {
 		return batimentService.findAll();
 	}
 
+	@PreAuthorize("hasRole('ROLE_STUDENT')")
 	@RequestMapping(value = "/batiment", method = RequestMethod.GET)
 	public ModelAndView homeBatiment() {
 		ModelAndView model = new ModelAndView("batiment");

@@ -4,16 +4,10 @@ import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
-import org.hibernate.validator.constraints.Email;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -36,7 +30,7 @@ public class Responsable extends User implements Serializable {
 	@Setter
 	private Set<Demande> lesDemandes;
 
-	@OneToOne
+	@ManyToOne
 	@Getter
 	@Setter
 	private Formation formation;

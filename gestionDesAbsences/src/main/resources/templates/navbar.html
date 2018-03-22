@@ -37,8 +37,8 @@
 				<li class="nav-item"><a class="nav-link" th:href="@{/batiment}">Bâtiments</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">Cours</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">Absences</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Emploi du
-						temps</a></li>
+				<li class="nav-item" sec:authorize="hasRole('ROLE_ADMINISTRATOR')"><a
+					class="nav-link" href="#">Emploi du temps</a></li>
 			</ul>
 			<form class="form-inline my-2 my-md-0" th:action="@{/logout}">
 				<button class="btn btn-primary my-2 my-sm-0" type="submit">Se

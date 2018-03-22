@@ -41,7 +41,7 @@ public class RoleService {
 		Set<Role> allRoles = roleRepository.findAll();
 		Set<Role> userRoles = new HashSet<>();
 		for (Role role : allRoles) {
-			if (role.getRoleUser().equals(user.getRoleUser())) {
+			if (role.getRoleUser().getId() == user.getRoleUser().getId()) {
 				userRoles.add(role);
 			}
 		}

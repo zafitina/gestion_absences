@@ -49,27 +49,76 @@ INSERT INTO public.formation(id, annee, diplome, titre)VALUES (3, 3, 'Licence','
 
 
 --importation liste des groupes
-INSERT INTO public.groupe(id, td, tp, formation_id)VALUES (1, 1, 1, 1);
-INSERT INTO public.groupe(id, td, tp, formation_id)VALUES (2, 2, 2, 1);
-INSERT INTO public.groupe(id, td, tp, formation_id)VALUES (3, 2, 3, 1);
-INSERT INTO public.groupe(id, td, tp, formation_id)VALUES (4, 3, 4, 1);
-INSERT INTO public.groupe(id, td, tp, formation_id)VALUES (5, 4, 5, 1);
+INSERT INTO public.groupe(id, td, tp, formation_id, nom)VALUES (1, 1, 1, 1, 'Apprentissage');
+INSERT INTO public.groupe(id, td, tp, formation_id, nom)VALUES (2, 2, 2, 1, 'Initiale 1');
+INSERT INTO public.groupe(id, td, tp, formation_id, nom)VALUES (3, 2, 3, 1, 'Initiale 2');
 
 
---importation des roles
+--importation des role_user
 INSERT INTO public.role_user(id, type_user)VALUES 
 (1, 'admin'),--admin
 (2, 'responsable'),--responsable
 (3, 'etudiant');--etudiant
 
+--import des roles
+INSERT INTO public.role(id, description, nom, role_user_id)VALUES (1, 'Privilèges des admins', 'ADMINISTRATOR', 1);
+INSERT INTO public.role(id, description, nom, role_user_id)VALUES (2, 'Privilèges des responsables', 'PROFESSOR', 2);
+INSERT INTO public.role(id, description, nom, role_user_id)VALUES (3, 'Privilèges des étudiants', 'STUDENT', 3);
+
+
 --importation liste des étudiants
 INSERT INTO public.etudiant(id, mail, nom, password, prenom, role_user_id, reserve, groupe_id)VALUES 
-(1, 'nicolas.zafitina@mail.fr', 'ZAFITINA', 'nicolas','Nicolas', 3, false, 1);
+(1, 'nicolas@etu.fr', 'NICOLAS', 'nicolas','Nicolas', 3, false, 1),
+(2, 'zafitina@etu.fr', 'ZAFITINA', 'zafitina','zafitina', 3, false, 2),
+(3, 'mamadou@etu.fr', 'MAMADOU', 'mamadou','mamadou', 3, false, 2),
+(4, 'bah@etu.fr', 'BAH', 'bah','bah', 3, false, 3),
+(5, 'theo@etu.fr', 'THEO', 'theo','theo', 3, false, 2),
+(6, 'nakote@etu.fr', 'NAKOTE', 'nakote','nakote', 3, false, 3),
+(7, 'mohamed@etu.fr', 'MOHAMED', 'mohamed','mohamed', 3, false, 1),
+(8, 'sacko@etu.fr', 'SACKO', 'sacko','sacko', 3, false, 2),
+(9, 'amine@etu.fr', 'AMINE', 'amine','amine', 3, false, 1),
+(10, 'boumoussou@etu.fr', 'BOUMOUSSOU', 'boumoussou','boumoussou', 3, false, 3)
+;
 
-
-
-
+ 
 --importation liste des responsable
+INSERT INTO public.responsable(id, mail, nom, password, prenom, role_user_id, reserve, formation_id)VALUES 
+(11, 'kolski@prof.fr', 'kolski', 'kolski', 'kolski', 2, false, 1),
+(12, 'grislin@prof.fr', 'grislin', 'grislin', 'grislin', 2, false, 1),
+(13, 'bilegan@prof.fr', 'bilegan', 'bilegan', 'bilegan', 2, false, 1),
+(14, 'mandiau@prof.fr', 'mandiau', 'mandiau', 'mandiau', 2, false, 1),
+(15, 'adam@prof.fr', 'adam', 'adam', 'adam', 2, false, 1)
+;
+
+--import des reponsables et leurs modules
+INSERT INTO public.responsable_modules(responsables_id, modules_id)VALUES 
+(11, 1),
+(12, 2),
+(13, 3),
+(14, 4),
+(11, 6),
+(12, 7),
+(13, 8),
+(14, 9),
+(11, 11),
+(12, 12),
+(13, 12),
+(14, 11),
+(15, 10),
+(11, 9),
+(12, 8),
+(13, 7),
+(14, 6),
+(15, 5),
+(11, 4),
+(12, 3),
+(13, 2),
+(14, 1)
+;
+
+
+--import des admins
+INSERT INTO public.admin(id, mail, nom, password, prenom, role_user_id)VALUES (20, 'admin@admin.fr', 'admin', 'admin', 'admin', 1);
 
 
 --importation liste des batiments
