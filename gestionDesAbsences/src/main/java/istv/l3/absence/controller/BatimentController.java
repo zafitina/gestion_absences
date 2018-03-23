@@ -27,7 +27,6 @@ public class BatimentController {
 		return batimentService.findAll();
 	}
 
-	@PreAuthorize("hasRole('ROLE_STUDENT')")
 	@RequestMapping(value = "/batiment", method = RequestMethod.GET)
 	public ModelAndView homeBatiment() {
 		ModelAndView model = new ModelAndView("batiment");
