@@ -17,6 +17,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import istv.l3.absence.enumeration.TypeCours;
 import lombok.Getter;
 import lombok.Setter;
@@ -53,6 +55,7 @@ public class Seance implements Serializable {
 	@NotNull
 	@Getter
 	@Setter
+	@JsonIgnore
 	private Salle salle;
 
 	@Enumerated(EnumType.STRING)
@@ -65,12 +68,14 @@ public class Seance implements Serializable {
 	@ManyToOne
 	@Getter
 	@Setter
+	@JsonIgnore
 	private Module module;
 
 	@NotNull
 	@ManyToOne
 	@Getter
 	@Setter
+	@JsonIgnore
 	private Admin admin;
 
 	@OneToMany(mappedBy = "seance")

@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -34,11 +36,13 @@ public class RoleUser implements Serializable {
 	@Getter
 	@Setter
 	@OneToMany(mappedBy = "roleUser")
+	@JsonIgnore
 	private Set<User> users;
 
 	@Getter
 	@Setter
 	@OneToMany(mappedBy = "roleUser")
+	@JsonIgnore
 	private Set<Role> roles;
 
 	public RoleUser() {

@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import istv.l3.absence.enumeration.EtatDemande;
 import lombok.Getter;
 import lombok.Setter;
@@ -53,11 +55,13 @@ public class Demande implements Serializable {
 	@ManyToOne
 	@Getter
 	@Setter
+	@JsonIgnore
 	private Responsable responsable;
 
 	@ManyToOne
 	@Getter
 	@Setter
+	@JsonIgnore
 	private Admin admin;
 
 	public Demande() {

@@ -31,14 +31,17 @@
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active"><a class="nav-link" th:href="@{/}">Accueil</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">Demande</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Etudiants</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Professeurs</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Administrateurs</a></li>
-				<li class="nav-item"><a class="nav-link" th:href="@{/batiment}">Bâtiments</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Cours</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/students}">Etudiants</a></li>
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/professors}">Professeurs</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/admins}">Administrateurs</a></li>
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/buildings}">Bâtiments</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/courses}">Cours</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">Absences</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Emploi du
-						temps</a></li>
+				<li class="nav-item" sec:authorize="hasRole('ROLE_STUDENT')"><a
+					sec:authorize="hasRole('ROLE_STUDENT')" class="nav-link" href="#">Emploi
+						du temps</a></li>
 			</ul>
 			<form class="form-inline my-2 my-md-0" th:action="@{/logout}">
 				<button class="btn btn-primary my-2 my-sm-0" type="submit">Se

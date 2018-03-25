@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,11 +35,13 @@ public class Presence implements Serializable {
 	@ManyToOne
 	@Getter
 	@Setter
+	@JsonIgnore
 	private Etudiant etudiant;
 
 	@ManyToOne
 	@Getter
 	@Setter
+	@JsonIgnore
 	private Seance seance;
 
 	public Presence() {

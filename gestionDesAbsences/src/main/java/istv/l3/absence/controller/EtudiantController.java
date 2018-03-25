@@ -9,27 +9,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import istv.l3.absence.model.Module;
-import istv.l3.absence.model.Responsable;
-import istv.l3.absence.service.ModuleService;
+import istv.l3.absence.model.Etudiant;
+import istv.l3.absence.service.EtudiantService;
 
 @Controller
-public class ModuleController {
+public class EtudiantController {
 
 	@Autowired
-	private ModuleService moduleService;
+	private EtudiantService etudiantService;
 
-	private final String url = "/module";
+	private final String url = "/student";
 
-	@RequestMapping(value = "/courses", method = RequestMethod.GET)
+	@RequestMapping(value = "/students", method = RequestMethod.GET)
 	public ModelAndView home() {
-		ModelAndView model = new ModelAndView("module");
+		ModelAndView model = new ModelAndView("etudiant");
 		return model;
 	}
 
 	@RequestMapping(value = url + "/all", method = RequestMethod.GET)
 	@ResponseBody
-	public Set<Module> findAll() {
-		return moduleService.findAll();
+	public Set<Etudiant> findAll() {
+		return etudiantService.findAll();
 	}
 }

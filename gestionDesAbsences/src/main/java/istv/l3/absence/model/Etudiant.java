@@ -9,6 +9,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,6 +26,7 @@ public class Etudiant extends User implements Serializable {
 	@JoinColumn(nullable = true)
 	@Getter
 	@Setter
+	@JsonIgnore
 	private Groupe groupe;
 
 	@NotNull
@@ -34,6 +37,7 @@ public class Etudiant extends User implements Serializable {
 	@OneToMany(mappedBy = "etudiant")
 	@Getter
 	@Setter
+	@JsonIgnore
 	private Set<Presence> presences;
 
 	public Etudiant() {

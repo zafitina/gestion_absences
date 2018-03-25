@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,6 +35,7 @@ public class Groupe implements Serializable {
 	@NotNull
 	@Getter
 	@Setter
+	@JsonIgnore
 	private Set<Etudiant> etudiants;
 
 	@Getter
@@ -51,6 +54,7 @@ public class Groupe implements Serializable {
 	@ManyToOne
 	@Getter
 	@Setter
+	@JsonIgnore
 	private Formation formation;
 
 	public Groupe() {

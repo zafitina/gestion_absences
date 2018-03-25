@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -41,6 +43,7 @@ public class Salle implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@Getter
 	@Setter
+	@JsonIgnore
 	private Batiment batiment;
 
 	public Salle() {

@@ -9,6 +9,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,16 +30,19 @@ public class Responsable extends User implements Serializable {
 	@OneToMany(mappedBy = "responsable")
 	@Getter
 	@Setter
+	@JsonIgnore
 	private Set<Demande> lesDemandes;
 
 	@ManyToOne
 	@Getter
 	@Setter
+	@JsonIgnore
 	private Formation formation;
 
 	@ManyToMany
 	@Getter
 	@Setter
+	@JsonIgnore
 	private Set<Module> modules;
 
 	public Responsable() {

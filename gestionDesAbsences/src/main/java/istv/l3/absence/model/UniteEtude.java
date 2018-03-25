@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -43,6 +45,7 @@ public class UniteEtude implements Serializable {
 	@OneToMany(mappedBy = "uniteEtude")
 	@Getter
 	@Setter
+	@JsonIgnore
 	private Set<Module> modules;
 
 	public UniteEtude() {

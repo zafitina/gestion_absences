@@ -27,7 +27,7 @@ public class BatimentController {
 		return batimentService.findAll();
 	}
 
-	@RequestMapping(value = "/batiment", method = RequestMethod.GET)
+	@RequestMapping(value = "/buildings", method = RequestMethod.GET)
 	public ModelAndView homeBatiment() {
 		ModelAndView model = new ModelAndView("batiment");
 		model.addObject("title", "Bâtiment");

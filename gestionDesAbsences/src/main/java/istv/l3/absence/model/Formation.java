@@ -12,6 +12,8 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -48,12 +50,14 @@ public class Formation implements Serializable {
 	@OneToMany(mappedBy = "formation")
 	@Getter
 	@Setter
+	@JsonIgnore
 	private Set<Groupe> groupes;
 
 	@NotNull
 	@OneToMany(mappedBy = "formation")
 	@Getter
 	@Setter
+	@JsonIgnore
 	private Set<Responsable> responsables;
 
 	public Formation() {

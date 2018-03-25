@@ -31,8 +31,4 @@ public class SeanceController {
 	public Set<Seance> findAll() {
 		return seanceService.findAll();
 	}
-	
-	
 }
-
-
