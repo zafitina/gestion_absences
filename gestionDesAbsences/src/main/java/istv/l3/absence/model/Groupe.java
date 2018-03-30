@@ -93,4 +93,28 @@ public class Groupe implements Serializable {
 		this.formation = formation;
 	}
 
+	public int getTd() {
+		return td;
+	}
+
+	public void setTd(int td) {
+		this.td = td;
+	}
+
+	public int getTp() {
+		return tp;
+	}
+
+	public void setTp(int tp) {
+		this.tp = tp;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
 }

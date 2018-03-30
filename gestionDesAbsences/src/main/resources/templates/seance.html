@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+
+<!-- Contenu de la page -->
+<title th:utext="${title}">Emploi du temps</title>
+</head>
+<body>
+	<th:block th:include="/navbar"></th:block>
+	<div class="container">
+		<h1>Les séances</h1>
+		<div class="row">
+			<div class="col-sm-12">
+				<div id="calendar"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+

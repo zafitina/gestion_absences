@@ -39,11 +39,11 @@ public class Responsable extends User implements Serializable {
 	@JsonIgnore
 	private Formation formation;
 
-	@ManyToMany
+	@OneToMany(mappedBy = "responsable")
 	@Getter
 	@Setter
 	@JsonIgnore
-	private Set<Module> modules;
+	private Set<Seance> seances;
 
 	public Responsable() {
 		super();
@@ -73,16 +73,15 @@ public class Responsable extends User implements Serializable {
 		this.formation = formation;
 	}
 
-	public Set<Module> getModules() {
-		return modules;
-	}
-
-	public void setModules(Set<Module> modules) {
-		this.modules = modules;
-	}
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
+	public Set<Seance> getSeances() {
+		return seances;
+	}
+
+	public void setSeances(Set<Seance> seances) {
+		this.seances = seances;
+	}
 }

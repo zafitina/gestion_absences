@@ -8,7 +8,6 @@ TRUNCATE TABLE groupe CASCADE;
 TRUNCATE TABLE module CASCADE;
 TRUNCATE TABLE presence CASCADE;
 TRUNCATE TABLE responsable CASCADE;
-TRUNCATE TABLE responsable_modules CASCADE;
 TRUNCATE TABLE role CASCADE;
 TRUNCATE TABLE role_user CASCADE;
 TRUNCATE TABLE salle CASCADE;
@@ -89,33 +88,6 @@ INSERT INTO public.responsable(id, mail, nom, password, prenom, role_user_id, re
 (14, 'mandiau@prof.fr', 'mandiau', 'mandiau', 'mandiau', 2, false, 1),
 (15, 'adam@prof.fr', 'adam', 'adam', 'adam', 2, false, 1)
 ;
-
---import des reponsables et leurs modules
-INSERT INTO public.responsable_modules(responsables_id, modules_id)VALUES 
-(11, 1),
-(12, 2),
-(13, 3),
-(14, 4),
-(11, 6),
-(12, 7),
-(13, 8),
-(14, 9),
-(11, 11),
-(12, 12),
-(13, 12),
-(14, 11),
-(15, 10),
-(11, 9),
-(12, 8),
-(13, 7),
-(14, 6),
-(15, 5),
-(11, 4),
-(12, 3),
-(13, 2),
-(14, 1)
-;
-
 
 --import des admins
 INSERT INTO public.admin(id, mail, nom, password, prenom, role_user_id)VALUES (20, 'admin@admin.fr', 'admin', 'admin', 'admin', 1);

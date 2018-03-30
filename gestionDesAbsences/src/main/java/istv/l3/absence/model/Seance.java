@@ -17,6 +17,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import istv.l3.absence.enumeration.TypeCours;
@@ -39,6 +41,7 @@ public class Seance implements Serializable {
 	@NotNull
 	@Getter
 	@Setter
+	@DateTimeFormat(pattern = "yyyy-mm-dd")
 	private Date dateSeance;
 
 	@NotNull
@@ -71,7 +74,6 @@ public class Seance implements Serializable {
 	@JsonIgnore
 	private Module module;
 
-	@NotNull
 	@ManyToOne
 	@Getter
 	@Setter
@@ -82,6 +84,12 @@ public class Seance implements Serializable {
 	@Getter
 	@Setter
 	private Set<Presence> presences;
+
+	@ManyToOne
+	@Getter
+	@Setter
+	@JsonIgnore
+	private Responsable responsable;
 
 	public Seance() {
 
@@ -157,5 +165,17 @@ public class Seance implements Serializable {
 
 	public void setPresences(Set<Presence> presences) {
 		this.presences = presences;
+	}
+
+	public Responsable getResponsable() {
+		return responsable;
+	}
+
+	public void setResponsable(Responsable responsable) {
+		this.responsable = responsable;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 }

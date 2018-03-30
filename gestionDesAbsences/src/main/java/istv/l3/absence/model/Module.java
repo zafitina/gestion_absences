@@ -56,12 +56,6 @@ public class Module implements Serializable {
 	@JsonIgnore
 	private Set<Seance> seances;
 
-	@ManyToMany(mappedBy = "modules")
-	@Getter
-	@Setter
-	@JsonIgnore
-	private Set<Responsable> responsables;
-
 	public Module() {
 
 	}
@@ -104,14 +98,6 @@ public class Module implements Serializable {
 
 	public void setSeances(Set<Seance> seances) {
 		this.seances = seances;
-	}
-
-	public Set<Responsable> getResponsables() {
-		return responsables;
-	}
-
-	public void setResponsables(Set<Responsable> responsables) {
-		this.responsables = responsables;
 	}
 
 	public static long getSerialversionuid() {
