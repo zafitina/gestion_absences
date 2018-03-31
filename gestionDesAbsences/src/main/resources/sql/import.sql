@@ -60,9 +60,9 @@ INSERT INTO public.role_user(id, type_user)VALUES
 (3, 'etudiant');--etudiant
 
 --import des roles
-INSERT INTO public.role(id, description, nom, role_user_id)VALUES (1, 'Privilèges des admins', 'ADMIN', 1);
-INSERT INTO public.role(id, description, nom, role_user_id)VALUES (2, 'Privilèges des responsables', 'PROF', 2);
-INSERT INTO public.role(id, description, nom, role_user_id)VALUES (3, 'Privilèges des étudiants', 'STUDENT', 3);
+INSERT INTO public.role(id, description, nom, role_user_id)VALUES (1, 'Privilèges des admins', 'ROLE_ADMIN', 1);
+INSERT INTO public.role(id, description, nom, role_user_id)VALUES (2, 'Privilèges des responsables', 'ROLE_PROF', 2);
+INSERT INTO public.role(id, description, nom, role_user_id)VALUES (3, 'Privilèges des étudiants', 'ROLE_STUDENT', 3);
 
 
 --importation liste des étudiants

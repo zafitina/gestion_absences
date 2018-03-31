@@ -12,7 +12,10 @@
 	<h2>
 		Bienvenue <span th:utext="${username}"></span>
 	</h2>
-
+	<p>
+		<span sec:authentication="principal.authorities">[ROLE_USER,
+			ROLE_ADMIN]</span>
+	</p>
 </body>
 </html>
 

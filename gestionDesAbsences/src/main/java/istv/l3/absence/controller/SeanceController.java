@@ -7,17 +7,19 @@ import java.util.Set;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import istv.l3.absence.model.Admin;
+import istv.l3.absence.model.Etudiant;
 import istv.l3.absence.model.Event;
+import istv.l3.absence.model.Presence;
 import istv.l3.absence.model.Responsable;
 import istv.l3.absence.model.Seance;
 import istv.l3.absence.model.User;
@@ -25,6 +27,7 @@ import istv.l3.absence.service.BatimentService;
 import istv.l3.absence.service.FormationService;
 import istv.l3.absence.service.GroupeService;
 import istv.l3.absence.service.ModuleService;
+import istv.l3.absence.service.PresenceService;
 import istv.l3.absence.service.ResponsableService;
 import istv.l3.absence.service.SalleService;
 import istv.l3.absence.service.SeanceService;
@@ -32,6 +35,10 @@ import istv.l3.absence.service.UserService;
 
 @Controller
 public class SeanceController {
+
+	@Autowired
+	private PresenceService presenceService;
+
 	@Autowired
 	private UserService userService;
 
@@ -64,15 +71,23 @@ public class SeanceController {
 		return model;
 	}
 
+	@RequestMapping(value = url + "/show/{idsession}", method = RequestMethod.GET)
+	public ModelAndView showSession(@PathVariable int idsession) {
+		ModelAndView model = new ModelAndView("showSession");
+		Seance seance = seanceService.findOne(idsession);
+		model.addObject("formations", formationService.findAll());
+		model.addObject("groupes", groupeService.findAll());
+		model.addObject("seance", seance);
+		return model;
+	}
+
 	@RequestMapping(value = "/createSession", method = RequestMethod.GET)
 	public ModelAndView createSession() {
 		Seance seance = new Seance();
 		ModelAndView model = new ModelAndView("createSeance");
 		model.addObject("seance", seance);
-		model.addObject("formations", formationService.findAll());
 		model.addObject("modules", moduleService.findAll());
 		model.addObject("professors", responsableService.findAll());
-		model.addObject("groupes", groupeService.findAll());
 		model.addObject("batiments", batimentService.findAll());
 		model.addObject("salles", salleService.findAll());
 		return model;
@@ -125,7 +140,23 @@ public class SeanceController {
 				e.setColor(e.getColor(seance));
 				events.add(e);
 			}
+			if (currentUser instanceof Etudiant) {
+				for (Presence presence : seance.getPresences()) {
+					if (presence.getEtudiant().getId() == currentUser.getId()) {
+						Event e = new Event();
+						e.setId((int) seance.getId());
+						e.setTitle(seance.getSalle().getBatiment().getNom() + " " + seance.getSalle().getNumero() + " "
+								+ seance.getModule().getNom() + " " + seance.getResponsable().getNom().toUpperCase());
+						e.setUrl("test");
+						e.setStart(formatter.format(seance.getDateSeance()) + " " + seance.getHeureDeb());
+						e.setEnd(formatter.format(seance.getDateSeance()) + " " + seance.getHeureFin());
+						e.setColor(e.getColor(seance));
+						events.add(e);
+					}
+				}
+			}
 		}
 		return events;
 	}
 }
+

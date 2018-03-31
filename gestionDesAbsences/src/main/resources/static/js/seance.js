@@ -17,7 +17,7 @@ $(document).ready(function() {
 		},
 		customButtons : {
 			addSession : {
-				text : 'Ajouter séance',
+				text : 'Ajouter une séance',
 				click : function() {
 					window.open('createSession', '_self');
 				}

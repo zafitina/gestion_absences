@@ -60,13 +60,19 @@ public class Event {
 	}
 
 	public String getColor(Seance seance) {
-		if (seance.getTypeCours() == TypeCours.CM) {
-			return "violet";
+		String color = "";
+		if (seance.getPresences().size() <= 0) {
+			color = "red";
+		} else {
+			if (seance.getTypeCours() == TypeCours.CM) {
+				color = "violet";
+			}
+			if (seance.getTypeCours() == TypeCours.TD) {
+				color = "blue";
+			}
+			color = "green";
 		}
-		if (seance.getTypeCours() == TypeCours.TD) {
-			return "blue";
-		}
-		return "green";
+		return color;
 	}
 
 	public void setColor(String color) {

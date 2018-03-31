@@ -9,7 +9,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import istv.l3.absence.service.UserDetailsServiceImpl;
@@ -33,7 +32,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.authorizeRequests().antMatchers("/login", "/logout").permitAll();
 
-		http.authorizeRequests().antMatchers("/", "/batiment").authenticated();
+		http.authorizeRequests().antMatchers("/", "/buildings", "/courses", "/createSession", "/sessions", "/students",
+				"/professors", "/admins", "/showSession").authenticated();
 
 		http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
 
