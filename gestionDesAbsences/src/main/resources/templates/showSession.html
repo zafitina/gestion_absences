@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+
+<!-- Contenu de la page -->
+<title th:utext="${title}">Login</title>
+</head>
+<body>
+	<th:block th:include="/navbar"></th:block>
+	<div class="container">
+		<h1>Ajouter groupe</h1>
+		<form action="#" th:action="@{/sessions}">
+			<div class="row">
+				<div class="form-group col-sm-4">
+					<label for="professor">Professeur</label> <input
+						class="form-control" type="text" th:value="${professor}"
+						readonly="readonly" />
+				</div>
+				<div class="form-group col-sm-4">
+					<label for="typecours">Type de cours</label> <input
+						class="form-control" type="text" th:value="${typecours}"
+						readonly="readonly" />
+				</div>
+				<div class="form-group col-sm-4">
+					<label for="module">Module</label> <input class="form-control"
+						type="text" th:value="${module}" readonly="readonly" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-sm-4">
+					<label for="date">Date</label> <input class="form-control"
+						type="text" th:value="${date}" readonly="readonly" />
+				</div>
+				<div class="form-group col-sm-4">
+					<label for="heureDeb">Début</label> <input class="form-control"
+						type="text" th:value="${heureDeb}" readonly="readonly" />
+				</div>
+				<div class="form-group col-sm-4">
+					<label for="heureFin">Fin</label> <input class="form-control"
+						type="text" th:value="${heureFin}" readonly="readonly" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-sm-6">
+					<label for="batiment">Batiment</label> <input class="form-control"
+						type="text" th:value="${batiment}" readonly="readonly" />
+				</div>
+				<div class="form-group col-sm-6">
+					<label for="salle">Salle</label> <input class="form-control"
+						type="text" th:value="${salle}" readonly="readonly" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-sm-6">
+					<label for="formation">Formation</label> <select id="formation"
+						class="form-control" required="required">
+						<option selected="selected" value="0">Choisissez...</option>
+						<option th:each="formation :${formations}"
+							th:value="${formation.id}"
+							th:text="${formation.diplome} +' '+ ${formation.annee} +' '+ ${formation.titre}"></option>
+					</select>
+				</div>
+				<div class="form-group col-sm-6">
+					<label for="groupe">Groupe</label><br></br> <select id="groupe"
+						class="custom-select" required="required" multiple="multipe">
+						<option selected="selected" value="0">Choisissez...</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-row">
+				<button id="valider" type="submit" class="btn btn-primary">Valider</button>
+				<button type="reset" class="btn btn-default">Annuler</button>
+			</div>
+
+		</form>
+	</div>
+
+
+</body>
+</html>
+

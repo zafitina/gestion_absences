@@ -18,7 +18,7 @@ public class MainController {
 	public ModelAndView welcomePage() {
 		ModelAndView model = new ModelAndView("welcomePage");
 		User user = userService.getLoggedUser();
-		model.addObject("username", user.getNom() + " " + user.getPrenom());
+		model.addObject("username", user.getNom().toUpperCase());
 		model.addObject("title", "Welcome");
 		model.addObject("message", "This is welcome page!");
 		return model;
@@ -30,4 +30,3 @@ public class MainController {
 		return model;
 	}
 }
-

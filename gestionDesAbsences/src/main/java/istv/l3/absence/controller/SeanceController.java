@@ -68,15 +68,27 @@ public class SeanceController {
 	@RequestMapping(value = "/sessions", method = RequestMethod.GET)
 	public ModelAndView homePage() {
 		ModelAndView model = new ModelAndView("seance");
+		User user = userService.getLoggedUser();
+		model.addObject("username", user.getNom().toUpperCase());
 		return model;
 	}
 
-	@RequestMapping(value = url + "/show/{idsession}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{idsession}", method = RequestMethod.GET)
 	public ModelAndView showSession(@PathVariable int idsession) {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-mm-yyyy");
 		ModelAndView model = new ModelAndView("showSession");
 		Seance seance = seanceService.findOne(idsession);
+		User user = userService.getLoggedUser();
+		model.addObject("username", user.getNom().toUpperCase());
 		model.addObject("formations", formationService.findAll());
-		model.addObject("groupes", groupeService.findAll());
+		model.addObject("professor", seance.getResponsable().getNom().toUpperCase());
+		model.addObject("date", formatter.format(seance.getDateSeance()));
+		model.addObject("heureDeb", seance.getHeureDeb());
+		model.addObject("heureFin", seance.getHeureFin());
+		model.addObject("module", seance.getModule().getNom());
+		model.addObject("typecours", seance.getTypeCours());
+		model.addObject("salle", seance.getSalle().getNumero());
+		model.addObject("batiment", seance.getSalle().getBatiment().getNom());
 		model.addObject("seance", seance);
 		return model;
 	}
@@ -85,6 +97,8 @@ public class SeanceController {
 	public ModelAndView createSession() {
 		Seance seance = new Seance();
 		ModelAndView model = new ModelAndView("createSeance");
+		User user = userService.getLoggedUser();
+		model.addObject("username", user.getNom().toUpperCase());
 		model.addObject("seance", seance);
 		model.addObject("modules", moduleService.findAll());
 		model.addObject("professors", responsableService.findAll());
@@ -106,7 +120,7 @@ public class SeanceController {
 			return "redirect:/createSession";
 		}
 		seanceService.save(seance);
-		return "redirect:/sessions";
+		return "redirect:/" + seance.getId();
 	}
 
 	@RequestMapping(value = url + "/events", method = RequestMethod.GET)
@@ -122,7 +136,7 @@ public class SeanceController {
 					e.setId((int) seance.getId());
 					e.setTitle(seance.getSalle().getBatiment().getNom() + " " + seance.getSalle().getNumero() + " "
 							+ seance.getModule().getNom() + " " + seance.getResponsable().getNom().toUpperCase());
-					e.setUrl("test");
+					e.setUrl("/" + seance.getId());
 					e.setStart(formatter.format(seance.getDateSeance()) + " " + seance.getHeureDeb());
 					e.setEnd(formatter.format(seance.getDateSeance()) + " " + seance.getHeureFin());
 					e.setColor(e.getColor(seance));
@@ -134,7 +148,7 @@ public class SeanceController {
 				e.setId((int) seance.getId());
 				e.setTitle(seance.getSalle().getBatiment().getNom() + " " + seance.getSalle().getNumero() + " "
 						+ seance.getModule().getNom() + " " + seance.getResponsable().getNom().toUpperCase());
-				e.setUrl("test");
+				e.setUrl("/" + seance.getId());
 				e.setStart(formatter.format(seance.getDateSeance()) + " " + seance.getHeureDeb());
 				e.setEnd(formatter.format(seance.getDateSeance()) + " " + seance.getHeureFin());
 				e.setColor(e.getColor(seance));
@@ -147,7 +161,7 @@ public class SeanceController {
 						e.setId((int) seance.getId());
 						e.setTitle(seance.getSalle().getBatiment().getNom() + " " + seance.getSalle().getNumero() + " "
 								+ seance.getModule().getNom() + " " + seance.getResponsable().getNom().toUpperCase());
-						e.setUrl("test");
+						e.setUrl("/" + seance.getId());
 						e.setStart(formatter.format(seance.getDateSeance()) + " " + seance.getHeureDeb());
 						e.setEnd(formatter.format(seance.getDateSeance()) + " " + seance.getHeureFin());
 						e.setColor(e.getColor(seance));
@@ -158,5 +172,9 @@ public class SeanceController {
 		}
 		return events;
 	}
-}
 
+	@RequestMapping(value = url + "/update/{idsession}", method = RequestMethod.GET)
+	public void updateSession(@PathVariable int idsession) {
+		Seance seance = seanceService.findOne(idsession);
+	}
+}

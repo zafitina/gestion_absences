@@ -10,10 +10,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import istv.l3.absence.model.Admin;
+import istv.l3.absence.model.User;
 import istv.l3.absence.service.AdminService;
+import istv.l3.absence.service.UserService;
 
 @Controller
 public class AdminController {
+
+	@Autowired
+	private UserService userService;
 
 	@Autowired
 	private AdminService AdminService;
@@ -23,6 +28,8 @@ public class AdminController {
 	@RequestMapping(value = "/admins", method = RequestMethod.GET)
 	public ModelAndView home() {
 		ModelAndView model = new ModelAndView("admin");
+		User user = userService.getLoggedUser();
+		model.addObject("username", user.getNom().toUpperCase());
 		return model;
 	}
 

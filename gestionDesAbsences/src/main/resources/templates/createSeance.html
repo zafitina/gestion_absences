@@ -66,8 +66,6 @@
 					<label for="salle">Salle</label> <select id="salle"
 						class="form-control" required="required" th:field="*{salle}">
 						<option selected="selected" value="0">Choisissez...</option>
-						<option th:each="salle :${salles}" th:value="${salle.id}"
-							th:text="${salle.numero}"></option>
 					</select>
 				</div>
 			</div>

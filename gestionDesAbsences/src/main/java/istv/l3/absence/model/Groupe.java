@@ -77,22 +77,6 @@ public class Groupe implements Serializable {
 		this.etudiants = etudiants;
 	}
 
-	public int gettd() {
-		return td;
-	}
-
-	public void settd(int td) {
-		this.td = td;
-	}
-
-	public Formation getFormation() {
-		return formation;
-	}
-
-	public void setFormation(Formation formation) {
-		this.formation = formation;
-	}
-
 	public int getTd() {
 		return td;
 	}
@@ -117,4 +101,15 @@ public class Groupe implements Serializable {
 		this.nom = nom;
 	}
 
+	public Formation getFormation() {
+		return formation;
+	}
+
+	public void setFormation(Formation formation) {
+		this.formation = formation;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 }
