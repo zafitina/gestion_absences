@@ -4,40 +4,41 @@
 <meta charset="utf-8" />
 
 
-
 <!-- les css -->
-<link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
 <link rel="stylesheet" type="text/css"
-	th:href="@{css/bootstrap.min.css}" />
+	th:href="@{/css/bootstrap.min.css}" />
 <link rel="stylesheet" type="text/css"
-	th:href="@{css/bootstrap-select.css}" />
+	th:href="@{/css/bootstrap-select.css}" />
 <link rel="stylesheet" type="text/css"
-	th:href="@{css/bootstrap-select.min.css}" />
+	th:href="@{/css/bootstrap-select.min.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />
 <link rel="stylesheet" type="text/css"
-	th:href="@{css/jquery.dataTables.min.css}" />
+	th:href="@{/css/jquery.dataTables.min.css}" />
 <link rel="stylesheet" type="text/css"
-	th:href="@{css/fullcalendar.min.css}" />
+	th:href="@{/css/fullcalendar.min.css}" />
 <link rel="stylesheet" type="text/css"
-	th:href="@{css/fullcalendar.print.min.css}" media="print" />
+	th:href="@{/css/fullcalendar.print.min.css}" media="print" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}" />
 
 <!-- les scripts -->
-<script type="text/javascript" th:src="@{js/tether.js}"></script>
-<script type="text/javascript" th:src="@{js/tether.min.js}"></script>
-<script type="text/javascript" th:src="@{js/jquery.js}"></script>
-<script type="text/javascript" th:src="@{js/moment.min.js}"></script>
-<script type="text/javascript" th:src="@{js/jquery.min.js}"></script>
-<script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
-<script type="text/javascript" th:src="@{js/jquery.dataTables.min.js}"></script>
-<script type="text/javascript" th:src="@{js/seance.js}"></script>
-<script type="text/javascript" th:src="@{js/etudiant.js}"></script>
-<script type="text/javascript" th:src="@{js/module.js}"></script>
-<script type="text/javascript" th:src="@{js/admin.js}"></script>
-<script type="text/javascript" th:src="@{js/responsable.js}"></script>
-<script type="text/javascript" th:src="@{js/batiment.js}"></script>
-<script type="text/javascript" th:src="@{js/moment.min.js}"></script>
-<script type="text/javascript" th:src="@{js/fullcalendar.min.js}"></script>
-<script type="text/javascript" th:src="@{js/locale-all.js}"></script>
+<script type="text/javascript" th:src="@{/js/tether.js}"></script>
+<script type="text/javascript" th:src="@{/js/tether.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/js/moment.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.dataTables.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/seance.js}"></script>
+<script type="text/javascript" th:src="@{/js/etudiant.js}"></script>
+<script type="text/javascript" th:src="@{/js/module.js}"></script>
+<script type="text/javascript" th:src="@{/js/admin.js}"></script>
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
+<script type="text/javascript" th:src="@{/js/responsable.js}"></script>
+<script type="text/javascript" th:src="@{/js/batiment.js}"></script>
+<script type="text/javascript" th:src="@{/js/moment.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/fullcalendar.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/locale-all.js}"></script>
 
 
 
@@ -71,7 +72,7 @@
 					class="nav-link" th:href="@{/courses}">Cours</a></li>
 
 				<li sec:authorize="hasAnyRole('ROLE_STUDENT', 'ROLE_ADMIN')"
-					class="nav-item"><a class="nav-link" href="#">Absences</a></li>
+					class="nav-item"><a class="nav-link" th:href="@{/presences}">Absences</a></li>
 
 				<li
 					sec:authorize="hasAnyRole('ROLE_STUDENT', 'ROLE_ADMIN', 'ROLE_PROF')"

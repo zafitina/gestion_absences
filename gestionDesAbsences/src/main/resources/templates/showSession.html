@@ -17,8 +17,6 @@
 						class="form-control">
 						<option th:value="${id}" th:text="${professor}"></option>
 					</select>
-
-
 				</div>
 				<div class="form-group col-sm-4">
 					<label for="typecours">Type de cours</label> <input
@@ -64,9 +62,10 @@
 							th:text="${formation.diplome} +' '+ ${formation.annee} +' '+ ${formation.titre}"></option>
 					</select>
 				</div>
-				<div class="form-group col-sm-6">
+				<div class="col-sm-6">
 					<label for="groupe">Groupe</label><br></br> <select id="groupe"
-						class="custom-select" required="required" multiple="multipe">
+						class="custom-select" size="3" required="required"
+						multiple="multipe">
 						<option selected="selected" value="0">Choisissez...</option>
 					</select>
 				</div>
@@ -79,7 +78,11 @@
 		</form>
 	</div>
 
-
+	<footer class="footer">
+		<div class="container">
+			<span class="text-muted">© Gestion des absences 2017-2018</span>
+		</div>
+	</footer>
 </body>
 </html>
 

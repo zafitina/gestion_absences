@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+<meta charset="utf-8" />
 <title th:utext="${title}"></title>
 </head>
 
@@ -9,13 +10,20 @@
 	<!-- Include _menu.html -->
 	<th:block th:include="/navbar"></th:block>
 
-	<h2>
-		Bienvenue <span th:utext="${username}"></span>
-	</h2>
-	<p>
-		<span sec:authentication="principal.authorities">[ROLE_USER,
-			ROLE_ADMIN]</span>
-	</p>
+	<div class="container">
+		<h2>
+			Bienvenue <span th:utext="${username}"></span>
+		</h2>
+		<p>
+			<span sec:authentication="principal.authorities">[ROLE_USER,
+				ROLE_ADMIN]</span>
+		</p>
+	</div>
+	<footer class="footer">
+		<div class="container">
+			<span class="text-muted">© Gestion des absences 2017-2018</span>
+		</div>
+	</footer>
 </body>
 </html>
 

@@ -1,6 +1,6 @@
 package istv.l3.absence.controller;
 
-import java.util.HashSet;
+import java.text.SimpleDateFormat;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import istv.l3.absence.model.Etudiant;
-import istv.l3.absence.model.Presence;
 import istv.l3.absence.model.Seance;
 import istv.l3.absence.model.User;
 import istv.l3.absence.service.EtudiantService;
+import istv.l3.absence.service.PresenceService;
 import istv.l3.absence.service.SeanceService;
 import istv.l3.absence.service.UserService;
 
@@ -30,6 +30,9 @@ public class EtudiantController {
 
 	@Autowired
 	private SeanceService seanceService;
+
+	@Autowired
+	private PresenceService presenceService;
 
 	private final String url = "/student";
 
@@ -47,10 +50,20 @@ public class EtudiantController {
 		return etudiantService.findAll();
 	}
 
-	@RequestMapping(value = "/showStudents/{idsession}")
+	@RequestMapping(value = "/{idsession}/showStudents")
 	public ModelAndView showStudent(@PathVariable int idsession) {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-mm-yyyy");
 		ModelAndView model = new ModelAndView("showStudents");
 		Seance seance = seanceService.findOne(idsession);
+		model.addObject("students", etudiantService.findBySession(idsession));
+		model.addObject("module", seance.getModule().getNom());
+		model.addObject("cours", seance.getTypeCours());
+		model.addObject("prof", seance.getResponsable().getNom());
+		model.addObject("date", formatter.format(seance.getDateSeance()));
+		model.addObject("heures", seance.getHeureDeb() + " - " + seance.getHeureFin());
+		model.addObject("salle", seance.getSalle().getNumero());
+		model.addObject("batiment", seance.getSalle().getBatiment().getNom());
+		model.addObject("idsession", seance.getId());
 		return model;
 	}
 

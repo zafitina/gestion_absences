@@ -140,9 +140,9 @@ public class SeanceController {
 				if (seance.getResponsable().getId() == currentUser.getId()) {
 					Event e = new Event();
 					e.setId((int) seance.getId());
-					e.setTitle(seance.getSalle().getBatiment().getNom() + " " + seance.getSalle().getNumero() + " "
-							+ seance.getModule().getNom() + " " + seance.getResponsable().getNom().toUpperCase());
-					e.setUrl("/" + e.getId());
+					e.setTitle(seance.getSalle().getBatiment().getNom() + " " + seance.getSalle().getNumero() + "\n"
+							+ seance.getModule().getNom() + "\n" + seance.getResponsable().getNom().toUpperCase());
+					e.setUrl("/" + seance.getId() + "/showStudents/");
 					e.setStart(formatter.format(seance.getDateSeance()) + " " + seance.getHeureDeb());
 					e.setEnd(formatter.format(seance.getDateSeance()) + " " + seance.getHeureFin());
 					e.setColor(e.getColor(seance));
@@ -152,9 +152,9 @@ public class SeanceController {
 			if (currentUser instanceof Admin) {
 				Event e = new Event();
 				e.setId((int) seance.getId());
-				e.setTitle(seance.getSalle().getBatiment().getNom() + " " + seance.getSalle().getNumero() + " "
-						+ seance.getModule().getNom() + " " + seance.getResponsable().getNom().toUpperCase());
-				e.setUrl("/" + e.getId());
+				e.setTitle(seance.getSalle().getBatiment().getNom() + " " + seance.getSalle().getNumero() + "\n"
+						+ seance.getModule().getNom() + "\n" + seance.getResponsable().getNom().toUpperCase());
+				e.setUrl("/" + seance.getId() + "/showStudents/");
 				e.setStart(formatter.format(seance.getDateSeance()) + " " + seance.getHeureDeb());
 				e.setEnd(formatter.format(seance.getDateSeance()) + " " + seance.getHeureFin());
 				e.setColor(e.getColor(seance));
@@ -165,9 +165,9 @@ public class SeanceController {
 					if (presence.getEtudiant().getId() == currentUser.getId()) {
 						Event e = new Event();
 						e.setId((int) seance.getId());
-						e.setTitle(seance.getSalle().getBatiment().getNom() + " " + seance.getSalle().getNumero() + " "
-								+ seance.getModule().getNom() + " " + seance.getResponsable().getNom().toUpperCase());
-						e.setUrl("/" + e.getId());
+						e.setTitle(seance.getSalle().getBatiment().getNom() + " " + seance.getSalle().getNumero() + "\n"
+								+ seance.getModule().getNom() + "\n" + seance.getResponsable().getNom().toUpperCase());
+						e.setUrl("/" + seance.getId() + "/showStudents/");
 						e.setStart(formatter.format(seance.getDateSeance()) + " " + seance.getHeureDeb());
 						e.setEnd(formatter.format(seance.getDateSeance()) + " " + seance.getHeureFin());
 						e.setColor(e.getColor(seance));
@@ -184,7 +184,6 @@ public class SeanceController {
 	public void updateSession(@PathVariable int idgroupe, @PathVariable int idsession) {
 		Seance seance = seanceService.findOne(idsession);
 		Groupe groupe = groupeService.finOne(idgroupe);
-		System.out.println(seance.getId() + " " + idsession);
 		for (Etudiant etudiant : groupe.getEtudiants()) {
 			Presence presence = new Presence();
 			presence.setEtudiant(etudiant);
