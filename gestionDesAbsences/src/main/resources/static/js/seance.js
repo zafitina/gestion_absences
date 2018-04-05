@@ -6,10 +6,22 @@ $(document).ready(
 		function() {
 
 			// valider session
-			$('#valider').on('click', function() {
-				var test = $('#groupe').val();
-				alert(test);
-			});
+			$('#valider').on(
+					'click',
+					function() {
+						var id = $('#seance').val();
+						var test = $('#groupe').val();
+						test.forEach(function(element) {
+							$.ajax({
+								url : 'http://localhost:8080/session/update/'
+										+ element + '/' + id,
+								type : 'POST',
+								success : function() {
+									alert('ok');
+								}
+							});
+						});
+					});
 
 			// changement liste salle
 			$('#batiment').on(

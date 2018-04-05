@@ -13,17 +13,20 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import istv.l3.absence.model.Admin;
 import istv.l3.absence.model.Etudiant;
 import istv.l3.absence.model.Event;
+import istv.l3.absence.model.Groupe;
 import istv.l3.absence.model.Presence;
 import istv.l3.absence.model.Responsable;
 import istv.l3.absence.model.Seance;
 import istv.l3.absence.model.User;
 import istv.l3.absence.service.BatimentService;
+import istv.l3.absence.service.EtudiantService;
 import istv.l3.absence.service.FormationService;
 import istv.l3.absence.service.GroupeService;
 import istv.l3.absence.service.ModuleService;
@@ -47,6 +50,9 @@ public class SeanceController {
 
 	@Autowired
 	private FormationService formationService;
+
+	@Autowired
+	private EtudiantService etudiantService;
 
 	@Autowired
 	private GroupeService groupeService;
@@ -89,7 +95,7 @@ public class SeanceController {
 		model.addObject("typecours", seance.getTypeCours());
 		model.addObject("salle", seance.getSalle().getNumero());
 		model.addObject("batiment", seance.getSalle().getBatiment().getNom());
-		model.addObject("seance", seance);
+		model.addObject("id", seance.getId());
 		return model;
 	}
 
@@ -136,7 +142,7 @@ public class SeanceController {
 					e.setId((int) seance.getId());
 					e.setTitle(seance.getSalle().getBatiment().getNom() + " " + seance.getSalle().getNumero() + " "
 							+ seance.getModule().getNom() + " " + seance.getResponsable().getNom().toUpperCase());
-					e.setUrl("/" + seance.getId());
+					e.setUrl("/" + e.getId());
 					e.setStart(formatter.format(seance.getDateSeance()) + " " + seance.getHeureDeb());
 					e.setEnd(formatter.format(seance.getDateSeance()) + " " + seance.getHeureFin());
 					e.setColor(e.getColor(seance));
@@ -148,7 +154,7 @@ public class SeanceController {
 				e.setId((int) seance.getId());
 				e.setTitle(seance.getSalle().getBatiment().getNom() + " " + seance.getSalle().getNumero() + " "
 						+ seance.getModule().getNom() + " " + seance.getResponsable().getNom().toUpperCase());
-				e.setUrl("/" + seance.getId());
+				e.setUrl("/" + e.getId());
 				e.setStart(formatter.format(seance.getDateSeance()) + " " + seance.getHeureDeb());
 				e.setEnd(formatter.format(seance.getDateSeance()) + " " + seance.getHeureFin());
 				e.setColor(e.getColor(seance));
@@ -161,7 +167,7 @@ public class SeanceController {
 						e.setId((int) seance.getId());
 						e.setTitle(seance.getSalle().getBatiment().getNom() + " " + seance.getSalle().getNumero() + " "
 								+ seance.getModule().getNom() + " " + seance.getResponsable().getNom().toUpperCase());
-						e.setUrl("/" + seance.getId());
+						e.setUrl("/" + e.getId());
 						e.setStart(formatter.format(seance.getDateSeance()) + " " + seance.getHeureDeb());
 						e.setEnd(formatter.format(seance.getDateSeance()) + " " + seance.getHeureFin());
 						e.setColor(e.getColor(seance));
@@ -173,8 +179,17 @@ public class SeanceController {
 		return events;
 	}
 
-	@RequestMapping(value = url + "/update/{idsession}", method = RequestMethod.GET)
-	public void updateSession(@PathVariable int idsession) {
+	@RequestMapping(value = url + "/update/{idgroupe}/{idsession}", method = RequestMethod.POST)
+	@ResponseBody
+	public void updateSession(@PathVariable int idgroupe, @PathVariable int idsession) {
 		Seance seance = seanceService.findOne(idsession);
+		Groupe groupe = groupeService.finOne(idgroupe);
+		System.out.println(seance.getId() + " " + idsession);
+		for (Etudiant etudiant : groupe.getEtudiants()) {
+			Presence presence = new Presence();
+			presence.setEtudiant(etudiant);
+			presence.setSeance(seance);
+			presenceService.save(presence);
+		}
 	}
 }
